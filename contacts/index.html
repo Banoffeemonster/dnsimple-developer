@@ -249,8 +249,6 @@ If the <code>organization_name</code> is specified, then you must also include <
 
 <h3 id="response-2">Response</h3>
 
-<p>Responds with HTTP 400 if the validation fails.</p>
-
 <p>Responds with HTTP 201 on success.</p>
 
 <pre><code class="language-js"><span class="p">{</span>
@@ -276,6 +274,8 @@ If the <code>organization_name</code> is specified, then you must also include <
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
+<p>Responds with HTTP 400 if the validation fails.</p>
+
 <h2 id="update-a-contact">Update a contact</h2>
 
 <pre><code>PUT /contacts/:id
@@ -298,8 +298,6 @@ If the <code>organization_name</code> is specified, then you must also include <
 <p>See <a href="#create-a-contact">Create a contact</a>.</p>
 
 <h3 id="response-3">Response</h3>
-
-<p>Responds with HTTP 400 if the validation fails.</p>
 
 <p>Responds with HTTP 200 on success.</p>
 
@@ -325,6 +323,8 @@ If the <code>organization_name</code> is specified, then you must also include <
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2014-01-15T22:08:07.390Z"</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
+
+<p>Responds with HTTP 400 if the validation fails.</p>
 
 <h2 id="delete-a-contact">Delete a contact</h2>
 

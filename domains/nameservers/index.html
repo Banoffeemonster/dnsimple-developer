@@ -55,16 +55,17 @@
         <h1 id="name-server-api">Name Server API</h1>
 
 <ul id="markdown-toc">
-  <li><a href="#change-domain-name-servers">Change domain name servers</a></li>
+  <li><a href="#list">List domain name servers</a></li>
+  <li><a href="#change">Change domain name servers</a></li>
   <li><a href="#register-a-domain-name-server-at-the-registry">Register a domain name server at the registry</a></li>
   <li><a href="#de-register-a-domain-name-server-at-the-registry">De-register a domain name server at the registry</a></li>
 </ul>
 
-<h2 id="change-domain-name-servers">Change domain name servers</h2>
+<h2 id="list">List domain name servers</h2>
 
-<p>Change the name servers either to external name servers or back to DNSimple’s name servers.</p>
+<p>List the delegated name servers for a domain.</p>
 
-<pre><code>POST /domains/:domain/name_servers
+<pre><code>GET /domains/:domain/name_servers
 </code></pre>
 
 <h3 id="parameters">Parameters</h3>
@@ -90,7 +91,56 @@
 
 <h3 id="example">Example</h3>
 
-<p>Change name servers for domain <code>example.com</code>:</p>
+<p>List delegated name servers for domain <code>example.com</code>:</p>
+
+<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
+      -H 'Accept: application/json' \
+      -H 'Content-Type: application/json' \
+      https://api.dnsimple.com/v1/domains/example.com/name_servers
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<p>Responds with HTTP 200 on success, returns the array of assigned name servers.</p>
+
+<pre><code class="language-js"><span class="p">[</span>
+  <span class="s2">"ns1.example.com"</span><span class="p">,</span>
+  <span class="s2">"ns2.example.com"</span><span class="p">,</span>
+  <span class="s2">"ns3.example.com"</span><span class="p">,</span>
+  <span class="s2">"ns4.example.com"</span>
+<span class="p">]</span></code></pre>
+
+<h2 id="change">Change domain name servers</h2>
+
+<p>Change the delegated name servers for a domain, either to external name servers or back to DNSimple’s name servers.</p>
+
+<pre><code>POST /domains/:domain/name_servers
+</code></pre>
+
+<h3 id="parameters-1">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:domain</code></td>
+      <td>
+<code>string</code>, <code>integer</code>
+</td>
+      <td>The domain name or id</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-1">Example</h3>
+
+<p>Change delegated name servers for domain <code>example.com</code>:</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
@@ -124,7 +174,7 @@
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<h3 id="response">Response</h3>
+<h3 id="response-1">Response</h3>
 
 <p>Responds with HTTP 200 on success, returns the array of assigned name servers.</p>
 
@@ -142,7 +192,7 @@
 <pre><code>POST /domains/:domain/registry_name_servers
 </code></pre>
 
-<h3 id="parameters-1">Parameters</h3>
+<h3 id="parameters-2">Parameters</h3>
 
 <table class="table">
   <thead>
@@ -165,7 +215,7 @@
 
 <p>The domain must be registered with DNSimple in order for this command to work.</p>
 
-<h3 id="example-1">Example</h3>
+<h3 id="example-2">Example</h3>
 
 <p>Register a name server belonging to <code>example.com</code>:</p>
 
@@ -186,7 +236,7 @@
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<h3 id="response-1">Response</h3>
+<h3 id="response-2">Response</h3>
 
 <p>Responds with HTTP 200 on success, returns the name server.</p>
 
@@ -204,7 +254,7 @@
 <pre><code>DELETE /domains/:domain/registry_name_servers/:name
 </code></pre>
 
-<h3 id="parameters-2">Parameters</h3>
+<h3 id="parameters-3">Parameters</h3>
 
 <table class="table">
   <thead>
@@ -230,7 +280,7 @@
   </tbody>
 </table>
 
-<h3 id="example-2">Example</h3>
+<h3 id="example-3">Example</h3>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
@@ -239,7 +289,7 @@
       https://api.dnsimple.com/v1/domains/example.com/registry_name_servers/ns1.example.com
 </code></pre>
 
-<h3 id="response-2">Response</h3>
+<h3 id="response-3">Response</h3>
 
 <p>Responds with HTTP 204 on success.</p>
 
