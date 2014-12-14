@@ -58,14 +58,14 @@
 with DNSimple or transferred into DNSimple from another registrar.</p>
 
 <ul id="markdown-toc">
-  <li><a href="#list-contacts">List contacts</a></li>
-  <li><a href="#get-a-contact">Get a contact</a></li>
-  <li><a href="#create-a-contact">Create a contact</a></li>
-  <li><a href="#update-a-contact">Update a contact</a></li>
-  <li><a href="#delete-a-contact">Delete a contact</a></li>
+  <li><a href="#list">List contacts</a></li>
+  <li><a href="#create">Create a contact</a></li>
+  <li><a href="#get">Get a contact</a></li>
+  <li><a href="#update">Update a contact</a></li>
+  <li><a href="#delete">Delete a contact</a></li>
 </ul>
 
-<h2 id="list-contacts">List contacts</h2>
+<h2 id="list">List contacts</h2>
 
 <pre><code>GET /contacts
 </code></pre>
@@ -128,51 +128,12 @@ with DNSimple or transferred into DNSimple from another registrar.</p>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h2 id="get-a-contact">Get a contact</h2>
-
-<pre><code>GET /contacts/:id
-</code></pre>
-
-<h3 id="example-1">Example</h3>
-
-<p>Get the contact with ID <code>123</code>.</p>
-
-<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
-      -H 'Accept: application/json' \
-      https://api.dnsimple.com/v1/contacts/123
-</code></pre>
-
-<h3 id="response-1">Response</h3>
-
-<pre><code class="language-js"><span class="p">{</span>
-  <span class="s2">"contact"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">28</span><span class="p">,</span>
-    <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">19</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="o">:</span> <span class="s2">"Simone"</span><span class="p">,</span>
-    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"Simone"</span><span class="p">,</span>
-    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Carletti"</span><span class="p">,</span>
-    <span class="s2">"job_title"</span><span class="o">:</span> <span class="s2">"Underwater Programmer"</span><span class="p">,</span>
-    <span class="s2">"organization_name"</span><span class="o">:</span> <span class="s2">"DNSimple"</span><span class="p">,</span>
-    <span class="s2">"email_address"</span><span class="o">:</span> <span class="s2">"simone.carletti@dnsimple.com"</span><span class="p">,</span>
-    <span class="s2">"phone"</span><span class="o">:</span> <span class="s2">"+1 111 4567890"</span><span class="p">,</span>
-    <span class="s2">"fax"</span><span class="o">:</span> <span class="s2">"+1 222 4567890"</span><span class="p">,</span>
-    <span class="s2">"address1"</span><span class="o">:</span> <span class="s2">"Awesome Street"</span><span class="p">,</span>
-    <span class="s2">"address2"</span><span class="o">:</span> <span class="s2">"c/o Someone"</span><span class="p">,</span>
-    <span class="s2">"city"</span><span class="o">:</span> <span class="s2">"Rome"</span><span class="p">,</span>
-    <span class="s2">"state_province"</span><span class="o">:</span> <span class="s2">"RM"</span><span class="p">,</span>
-    <span class="s2">"postal_code"</span><span class="o">:</span> <span class="s2">"00171"</span><span class="p">,</span>
-    <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"IT"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2014-01-15T22:08:07.390Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2014-01-15T22:08:07.390Z"</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
-
-<h2 id="create-a-contact">Create a contact</h2>
+<h2 id="create">Create a contact</h2>
 
 <pre><code>POST /contacts
 </code></pre>
 
-<h3 id="example-2">Example</h3>
+<h3 id="example-1">Example</h3>
 
 <p>Create a contact.</p>
 
@@ -186,47 +147,92 @@ with DNSimple or transferred into DNSimple from another registrar.</p>
 
 <h3 id="input">Input</h3>
 
-<dl>
-  <dt>contact.first_name</dt>
-  <dd>Required <em>string</em>
-</dd>
-  <dt>contact.last_name</dt>
-  <dd>Required <em>string</em>
-</dd>
-  <dt>contact.organization_name</dt>
-  <dd>Optional <em>string</em> representing the organization/company name.
-If the <code>organization_name</code> is specified, then you must also include <code>job_title</code>.</dd>
-  <dt>contact.job_title</dt>
-  <dd>Optional <em>string</em>
-</dd>
-  <dt>contact.address1</dt>
-  <dd>Required <em>string</em>
-</dd>
-  <dt>contact.city</dt>
-  <dd>Required <em>string</em>
-</dd>
-  <dt>contact.state_province</dt>
-  <dd>Required <em>string</em>
-</dd>
-  <dt>contact.postal_code</dt>
-  <dd>Required <em>string</em>
-</dd>
-  <dt>contact.country</dt>
-  <dd>Required <em>string</em>
-</dd>
-  <dt>contact.email_address</dt>
-  <dd>Required <em>string</em>
-</dd>
-  <dt>contact.phone</dt>
-  <dd>Required <em>string</em>
-</dd>
-  <dt>contact.fax</dt>
-  <dd>Optional <em>string</em>
-</dd>
-  <dt>contact.label</dt>
-  <dd>Optional <em>string</em>
-</dd>
-</dl>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>contact.label</code></td>
+      <td><code>string</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>contact.first_name</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>contact.last_name</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>contact.organization_name</code></td>
+      <td><code>string</code></td>
+      <td>The organization/company name. If the <code>organization_name</code> is specified, then you must also include <code>job_title</code>.</td>
+    </tr>
+    <tr>
+      <td><code>contact.job_title</code></td>
+      <td><code>string</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>contact.address1</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>contact.city</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>contact.state_province</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>contact.postal_code</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>contact.country</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>contact.email_address</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>contact.phone</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>contact.fax</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+  </tbody>
+</table>
 
 <pre><code class="language-js"><span class="p">{</span>
   <span class="s2">"contact"</span><span class="o">:</span> <span class="p">{</span>
@@ -247,7 +253,7 @@ If the <code>organization_name</code> is specified, then you must also include <
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<h3 id="response-2">Response</h3>
+<h3 id="response-1">Response</h3>
 
 <p>Responds with HTTP 201 on success.</p>
 
@@ -276,10 +282,87 @@ If the <code>organization_name</code> is specified, then you must also include <
 
 <p>Responds with HTTP 400 if the validation fails.</p>
 
-<h2 id="update-a-contact">Update a contact</h2>
+<h2 id="get">Get a contact</h2>
+
+<pre><code>GET /contacts/:id
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:id</code></td>
+      <td><code>integer</code></td>
+      <td>The contact id</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-2">Example</h3>
+
+<p>Get the contact with ID <code>123</code>.</p>
+
+<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
+      -H 'Accept: application/json' \
+      https://api.dnsimple.com/v1/contacts/123
+</code></pre>
+
+<h3 id="response-2">Response</h3>
+
+<pre><code class="language-js"><span class="p">{</span>
+  <span class="s2">"contact"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">28</span><span class="p">,</span>
+    <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">19</span><span class="p">,</span>
+    <span class="s2">"label"</span><span class="o">:</span> <span class="s2">"Simone"</span><span class="p">,</span>
+    <span class="s2">"first_name"</span><span class="o">:</span> <span class="s2">"Simone"</span><span class="p">,</span>
+    <span class="s2">"last_name"</span><span class="o">:</span> <span class="s2">"Carletti"</span><span class="p">,</span>
+    <span class="s2">"job_title"</span><span class="o">:</span> <span class="s2">"Underwater Programmer"</span><span class="p">,</span>
+    <span class="s2">"organization_name"</span><span class="o">:</span> <span class="s2">"DNSimple"</span><span class="p">,</span>
+    <span class="s2">"email_address"</span><span class="o">:</span> <span class="s2">"simone.carletti@dnsimple.com"</span><span class="p">,</span>
+    <span class="s2">"phone"</span><span class="o">:</span> <span class="s2">"+1 111 4567890"</span><span class="p">,</span>
+    <span class="s2">"fax"</span><span class="o">:</span> <span class="s2">"+1 222 4567890"</span><span class="p">,</span>
+    <span class="s2">"address1"</span><span class="o">:</span> <span class="s2">"Awesome Street"</span><span class="p">,</span>
+    <span class="s2">"address2"</span><span class="o">:</span> <span class="s2">"c/o Someone"</span><span class="p">,</span>
+    <span class="s2">"city"</span><span class="o">:</span> <span class="s2">"Rome"</span><span class="p">,</span>
+    <span class="s2">"state_province"</span><span class="o">:</span> <span class="s2">"RM"</span><span class="p">,</span>
+    <span class="s2">"postal_code"</span><span class="o">:</span> <span class="s2">"00171"</span><span class="p">,</span>
+    <span class="s2">"country"</span><span class="o">:</span> <span class="s2">"IT"</span><span class="p">,</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2014-01-15T22:08:07.390Z"</span><span class="p">,</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2014-01-15T22:08:07.390Z"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="update">Update a contact</h2>
 
 <pre><code>PUT /contacts/:id
 </code></pre>
+
+<h3 id="parameters-1">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:id</code></td>
+      <td><code>integer</code></td>
+      <td>The contact id</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="example-3">Example</h3>
 
@@ -295,7 +378,7 @@ If the <code>organization_name</code> is specified, then you must also include <
 
 <h3 id="input-1">Input</h3>
 
-<p>See <a href="#create-a-contact">Create a contact</a>.</p>
+<p>See <a href="#create">Create a contact</a>.</p>
 
 <h3 id="response-3">Response</h3>
 
@@ -326,10 +409,29 @@ If the <code>organization_name</code> is specified, then you must also include <
 
 <p>Responds with HTTP 400 if the validation fails.</p>
 
-<h2 id="delete-a-contact">Delete a contact</h2>
+<h2 id="delete">Delete a contact</h2>
 
 <pre><code>DELETE /contacts/:id
 </code></pre>
+
+<h3 id="parameters-2">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:id</code></td>
+      <td><code>integer</code></td>
+      <td>The contact id</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="example-4">Example</h3>
 

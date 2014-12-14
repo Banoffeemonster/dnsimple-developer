@@ -56,7 +56,7 @@
 
 <ul id="markdown-toc">
   <li><a href="#import-a-domain-zone">Import a domain zone</a></li>
-  <li><a href="#get">Export a domain zone</a></li>
+  <li><a href="#get">Get a domain zone</a></li>
 </ul>
 
 <h2 id="import-a-domain-zone">Import a domain zone</h2>
@@ -172,7 +172,9 @@
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="get">Export a domain zone</h2>
+<h2 id="get">Get a domain zone</h2>
+
+<p>Get the domain as a <a href="https://www.ietf.org/rfc/rfc1035.txt">zone file</a> content.</p>
 
 <pre><code>GET /domains/:domain/zone
 </code></pre>
@@ -202,14 +204,14 @@
 
 <h3 id="example-1">Example</h3>
 
-<p>Export zone for domain <code>example.com</code>:</p>
+<p>Get the zone content for domain <code>example.com</code>:</p>
 
 <pre><code>curl  -H 'Accept: text/plain' \
       -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       https://api.dnsimple.com/v1/domains/example.com/zone
 </code></pre>
 
-<p>Export zone for domain with ID <code>123</code>:</p>
+<p>Get the zone content for domain with ID <code>123</code>:</p>
 
 <pre><code>curl  -H 'Accept: text/plain' \
       -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
@@ -218,13 +220,15 @@
 
 <h3 id="response-1">Response</h3>
 
+<p>Responds with HTTP 200 on success, returns the zone file content.</p>
+
 <pre><code>$ORIGIN example.com.
 $TTL 1h
-example.com. IN SOA ns1.dnsimple.com admin.dnsimple.com 2012112401 86400 7200 604800 300
-example.com. IN NS  ns1.dnsimple.com.
-example.com. IN NS  ns2.dnsimple.com.
-example.com. IN NS  ns3.dnsimple.com.
-example.com. IN NS  ns4.dnsimple.com.
+example.com. 3600 IN SOA ns1.dnsimple.com admin.dnsimple.com 2012112401 86400 7200 604800 300
+example.com. 3600 IN NS  ns1.dnsimple.com.
+example.com. 3600 IN NS  ns2.dnsimple.com.
+example.com. 3600 IN NS  ns3.dnsimple.com.
+example.com. 3600 IN NS  ns4.dnsimple.com.
 </code></pre>
 
       </main>
