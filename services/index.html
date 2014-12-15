@@ -58,16 +58,18 @@
 Additionally any changes made to a service will automatically be reflected in the domain’s records.</p>
 
 <ul id="markdown-toc">
-  <li><a href="#list-services">List services</a></li>
-  <li><a href="#get-a-service">Get a service</a></li>
+  <li><a href="#list">List services</a></li>
+  <li><a href="#get">Get a service</a></li>
 </ul>
 
-<h2 id="list-services">List services</h2>
+<h2 id="list">List services</h2>
 
 <pre><code>GET /services
 </code></pre>
 
 <h3 id="example">Example</h3>
+
+<p>List all services.</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
@@ -99,16 +101,37 @@ Additionally any changes made to a service will automatically be reflected in th
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h2 id="get-a-service">Get a service</h2>
+<h2 id="get">Get a service</h2>
 
 <pre><code>GET /services/:id
 </code></pre>
 
+<h3 id="parameters">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:id</code></td>
+      <td><code>integer</code></td>
+      <td>The service id</td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="example-1">Example</h3>
+
+<p>Get the service with ID <code>123</code>.</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
-      https://api.dnsimple.com/v1/services/:id
+      https://api.dnsimple.com/v1/services/123
 </code></pre>
 
 <h3 id="response-1">Response</h3>

@@ -58,8 +58,9 @@
 
 <ul id="markdown-toc">
   <li><a href="#list">List templates</a></li>
-  <li><a href="#get">Get a template</a></li>
   <li><a href="#create">Create a template</a></li>
+  <li><a href="#get">Get a template</a></li>
+  <li><a href="#update">Update a template</a></li>
   <li><a href="#delete">Delete a template</a></li>
 </ul>
 
@@ -82,79 +83,34 @@
 <pre><code class="language-js"><span class="p">[</span>
   <span class="p">{</span>
     <span class="s2">"dns_template"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
       <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Example"</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span><span class="p">,</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">31</span><span class="p">,</span>
-      <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"An example of a template."</span><span class="p">,</span>
       <span class="s2">"short_name"</span><span class="o">:</span> <span class="s2">"example"</span><span class="p">,</span>
-      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"An example of a template."</span>
+      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span><span class="p">,</span>
+      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="s2">"dns_template"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Example"</span><span class="p">,</span>
+      <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"An example of a template."</span><span class="p">,</span>
+      <span class="s2">"short_name"</span><span class="o">:</span> <span class="s2">"example-2"</span><span class="p">,</span>
+      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span><span class="p">,</span>
+      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
-
-<h2 id="get">Get a template</h2>
-
-<pre><code>GET /templates/:template
-</code></pre>
-
-<h3 id="parameters">Parameters</h3>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>:template</code></td>
-      <td>
-<code>string</code>, <code>integer</code>
-</td>
-      <td>The template short-name or id</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="example-1">Example</h3>
-
-<p>Get the template with ID <code>1</code>.</p>
-
-<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
-      -H 'Accept: application/json' \
-      https://api.dnsimple.com/v1/templates/1
-</code></pre>
-
-<p>Get the template with short-name <code>heroku</code>.</p>
-
-<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
-      -H 'Accept: application/json' \
-      https://api.dnsimple.com/v1/templates/heroku
-</code></pre>
-
-<h3 id="response-1">Response</h3>
-
-<pre><code class="language-js"><span class="p">{</span>
-  <span class="s2">"dns_template"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Example"</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span><span class="p">,</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">31</span><span class="p">,</span>
-    <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s2">"short_name"</span><span class="o">:</span> <span class="s2">"example"</span><span class="p">,</span>
-    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"An example of a template."</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
 
 <h2 id="create">Create a template</h2>
 
 <pre><code>POST /templates
 </code></pre>
 
-<h3 id="example-2">Example</h3>
+<h3 id="example-1">Example</h3>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
@@ -195,7 +151,7 @@
   </tbody>
 </table>
 
-<h5 id="example-3">Example</h5>
+<h5 id="example-2">Example</h5>
 
 <pre><code class="language-js"><span class="p">{</span>
   <span class="s2">"dns_template"</span><span class="o">:</span> <span class="p">{</span>
@@ -204,13 +160,79 @@
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
+<h3 id="response-1">Response</h3>
+
+<pre><code class="language-js"><span class="p">{</span>
+  <span class="s2">"dns_template"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Example"</span><span class="p">,</span>
+    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"An example of a template."</span><span class="p">,</span>
+    <span class="s2">"short_name"</span><span class="o">:</span> <span class="s2">"example"</span><span class="p">,</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span><span class="p">,</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="get">Get a template</h2>
+
+<pre><code>GET /templates/:template
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:template</code></td>
+      <td>
+<code>string</code>, <code>integer</code>
+</td>
+      <td>The template short-name or id</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-3">Example</h3>
+
+<p>Get the template with ID <code>1</code>.</p>
+
+<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
+      -H 'Accept: application/json' \
+      https://api.dnsimple.com/v1/templates/1
+</code></pre>
+
+<p>Get the template with short-name <code>heroku</code>.</p>
+
+<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
+      -H 'Accept: application/json' \
+      https://api.dnsimple.com/v1/templates/heroku
+</code></pre>
+
 <h3 id="response-2">Response</h3>
 
-<pre><code class="language-js"><span class="nx">TODO</span></code></pre>
+<pre><code class="language-js"><span class="p">{</span>
+  <span class="s2">"dns_template"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Example"</span><span class="p">,</span>
+    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"An example of a template."</span><span class="p">,</span>
+    <span class="s2">"short_name"</span><span class="o">:</span> <span class="s2">"example"</span><span class="p">,</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span><span class="p">,</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
 
-<h2 id="delete">Delete a template</h2>
+<h2 id="update">Update a template</h2>
 
-<pre><code>DELETE /templates/:id
+<pre><code>PUT /templates/:id
 </code></pre>
 
 <h3 id="parameters-1">Parameters</h3>
@@ -236,6 +258,66 @@
 
 <h3 id="example-4">Example</h3>
 
+<p>Update the template with ID <code>1</code>:</p>
+
+<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
+      -H 'Accept: application/json' \
+      -H 'Content-Type: application/json' \
+      -X PUT \
+      -d '&lt;json&gt;' \
+      https://api.dnsimple.com/v1/templates/1
+</code></pre>
+
+<h3 id="input-1">Input</h3>
+
+<p>See <a href="#create">create</a>.</p>
+
+<h3 id="response-3">Response</h3>
+
+<p>Responds with HTTP 200 on success.</p>
+
+<pre><code class="language-js"><span class="p">{</span>
+  <span class="s2">"dns_template"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"user_id"</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"Example"</span><span class="p">,</span>
+    <span class="s2">"description"</span><span class="o">:</span> <span class="s2">"An example of a template."</span><span class="p">,</span>
+    <span class="s2">"short_name"</span><span class="o">:</span> <span class="s2">"example"</span><span class="p">,</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span><span class="p">,</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<p>Responds with HTTP 400 if the validation fails.</p>
+
+<h2 id="delete">Delete a template</h2>
+
+<pre><code>DELETE /templates/:id
+</code></pre>
+
+<h3 id="parameters-2">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:template</code></td>
+      <td>
+<code>string</code>, <code>integer</code>
+</td>
+      <td>The template short-name or id</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-5">Example</h3>
+
 <p>Get the template with ID <code>1</code>.</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
@@ -254,9 +336,15 @@
       https://api.dnsimple.com/v1/templates/heroku
 </code></pre>
 
-<h3 id="response-3">Response</h3>
+<h3 id="response-4">Response</h3>
 
-<pre><code class="language-js"><span class="nx">TODO</span></code></pre>
+<p>Responds with HTTP 200 on success.</p>
+
+<div class="marker marker-warning">
+  <p>#### Planned Changes</p>
+
+  <p>The method will return a blank response in the future, you should not depend on the response body.</p>
+</div>
 
       </main>
       <aside id="sidebar" class="col-md-3" role="sidebar">
