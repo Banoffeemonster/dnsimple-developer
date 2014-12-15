@@ -55,146 +55,398 @@
         <h1 id="template-record-api">Template Record API</h1>
 
 <ul id="markdown-toc">
-  <li><a href="#list-template-records">List template records</a></li>
-  <li><a href="#get-a-template-record">Get a template record</a></li>
-  <li><a href="#create-a-template-record">Create a template record</a></li>
-  <li><a href="#delete-a-template-record">Delete a template record</a></li>
+  <li><a href="#list">List template records</a></li>
+  <li><a href="#create">Create a template record</a></li>
+  <li><a href="#get">Get a template record</a></li>
+  <li><a href="#update">Update a template record</a></li>
+  <li><a href="#delete">Delete a template record</a></li>
 </ul>
 
-<h2 id="list-template-records">List template records</h2>
+<h2 id="list">List template records</h2>
 
 <pre><code>GET /templates/:template/records
 </code></pre>
 
+<h3 id="parameters">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:template</code></td>
+      <td>
+<code>integer</code>,<code>string</code>
+</td>
+      <td>The template id or short-name</td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="example">Example</h3>
+
+<p>List records for template <code>1</code>:</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
-      https://api.dnsimple.com/v1/templates/:template/records
+      https://api.dnsimple.com/v1/templates/1/records
+</code></pre>
+
+<p>List records for template <code>foo</code>:</p>
+
+<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
+      -H 'Accept: application/json' \
+      https://api.dnsimple.com/v1/templates/foo/records
 </code></pre>
 
 <h3 id="response">Response</h3>
 
+<p>Responds with HTTP 200.</p>
+
 <pre><code class="language-js"><span class="p">[</span>
   <span class="p">{</span>
     <span class="s2">"dns_template_record"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">"dns_template_id"</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"ww1"</span><span class="p">,</span>
+      <span class="s2">"content"</span><span class="o">:</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span>
       <span class="s2">"ttl"</span><span class="o">:</span> <span class="mi">3600</span><span class="p">,</span>
-      <span class="s2">"dns_template_id"</span><span class="o">:</span> <span class="mi">31</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:02:11Z"</span><span class="p">,</span>
-      <span class="s2">"special_type"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:02:11Z"</span><span class="p">,</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">119</span><span class="p">,</span>
-      <span class="s2">"content"</span><span class="o">:</span> <span class="s2">"1.2.3.4"</span><span class="p">,</span>
-      <span class="s2">"record_type"</span><span class="o">:</span> <span class="s2">"A"</span><span class="p">,</span>
-      <span class="s2">"prio"</span><span class="o">:</span> <span class="kc">null</span>
+      <span class="s2">"prio"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"record_type"</span><span class="o">:</span> <span class="s2">"ALIAS"</span><span class="p">,</span>
+      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2014-12-15T17:26:11.648Z"</span><span class="p">,</span>
+      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2014-12-15T17:26:11.648Z"</span>
     <span class="p">}</span>
   <span class="p">},</span>
   <span class="p">{</span>
     <span class="s2">"dns_template_record"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"www"</span><span class="p">,</span>
+      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">"dns_template_id"</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"ww2"</span><span class="p">,</span>
+      <span class="s2">"content"</span><span class="o">:</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span>
       <span class="s2">"ttl"</span><span class="o">:</span> <span class="mi">3600</span><span class="p">,</span>
-      <span class="s2">"dns_template_id"</span><span class="o">:</span> <span class="mi">31</span><span class="p">,</span>
-      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:02:11Z"</span><span class="p">,</span>
-      <span class="s2">"special_type"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:02:11Z"</span><span class="p">,</span>
-      <span class="s2">"id"</span><span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
-      <span class="s2">"content"</span><span class="o">:</span> <span class="s2">"example.com"</span><span class="p">,</span>
-      <span class="s2">"record_type"</span><span class="o">:</span> <span class="s2">"CNAME"</span><span class="p">,</span>
-      <span class="s2">"prio"</span><span class="o">:</span> <span class="kc">null</span>
+      <span class="s2">"prio"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">"record_type"</span><span class="o">:</span> <span class="s2">"ALIAS"</span><span class="p">,</span>
+      <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2014-12-15T17:25:20.431Z"</span><span class="p">,</span>
+      <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2014-12-15T17:25:20.431Z"</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h2 id="get-a-template-record">Get a template record</h2>
-
-<pre><code>GET /templates/:template/records/:id
-</code></pre>
-
-<h3 id="example-1">Example</h3>
-
-<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
-      -H 'Accept: application/json' \
-      https://api.dnsimple.com/v1/templates/:template/records/:id
-</code></pre>
-
-<h3 id="response-1">Response</h3>
-
-<pre><code class="language-js"><span class="p">{</span>
-  <span class="s2">"dns_template_record"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"ttl"</span><span class="o">:</span> <span class="mi">3600</span><span class="p">,</span>
-    <span class="s2">"dns_template_id"</span><span class="o">:</span> <span class="mi">31</span><span class="p">,</span>
-    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:02:11Z"</span><span class="p">,</span>
-    <span class="s2">"special_type"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
-    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:02:11Z"</span><span class="p">,</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">119</span><span class="p">,</span>
-    <span class="s2">"content"</span><span class="o">:</span> <span class="s2">"1.2.3.4"</span><span class="p">,</span>
-    <span class="s2">"record_type"</span><span class="o">:</span> <span class="s2">"A"</span><span class="p">,</span>
-    <span class="s2">"prio"</span><span class="o">:</span> <span class="kc">null</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
-
-<h2 id="create-a-template-record">Create a template record</h2>
+<h2 id="create">Create a template record</h2>
 
 <pre><code>POST /templates/:template/records
 </code></pre>
 
-<h3 id="example-2">Example</h3>
+<h3 id="example-1">Example</h3>
+
+<p>Create a record for template <code>1</code>:</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
       -H 'Content-Type: application/json' \
       -X POST \
       -d '&lt;json&gt;' \
-      https://api.dnsimple.com/v1/templates/:template/records
+      https://api.dnsimple.com/v1/templates/1/records
 </code></pre>
 
 <h3 id="input">Input</h3>
 
-<p>The following fields are required:</p>
-
-<ul>
-  <li><code>dns_template_record[name]</code></li>
-  <li><code>dns_template_record[record_type]</code></li>
-  <li><code>dns_template_record[content]</code></li>
-</ul>
-
-<p>The following fields are optional:</p>
-
-<p>– <code>dns_template_record[ttl]</code>
-– <code>dns_template_record[prio]</code></p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>record.name</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>. Use an empty string to create a record for the root domain.</td>
+    </tr>
+    <tr>
+      <td><code>record.record_type</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>record.content</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>record.ttl</code></td>
+      <td><code>integer</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>record.prio</code></td>
+      <td><code>integer</code></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
 
 <pre><code class="language-js"><span class="p">{</span>
   <span class="s2">"dns_template_record"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"sample"</span><span class="p">,</span>
-    <span class="s2">"record_type"</span><span class="o">:</span> <span class="s2">"A"</span><span class="p">,</span>
-    <span class="s2">"content"</span><span class="o">:</span> <span class="s2">"1.2.3.4"</span><span class="p">,</span>
-    <span class="s2">"ttl"</span><span class="o">:</span> <span class="mi">7200</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"record_type"</span><span class="o">:</span> <span class="s2">"MX"</span><span class="p">,</span>
+    <span class="s2">"content"</span><span class="o">:</span> <span class="s2">"mail.example.com"</span><span class="p">,</span>
+    <span class="s2">"ttl"</span><span class="o">:</span> <span class="mi">3600</span><span class="p">,</span>
+    <span class="s2">"prio"</span><span class="o">:</span> <span class="mi">10</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<h3 id="response-2">Response</h3>
+<h3 id="response-1">Response</h3>
 
-<pre><code class="language-js"><span class="nx">TODO</span></code></pre>
+<p>Responds with HTTP 201 on success.</p>
 
-<h2 id="delete-a-template-record">Delete a template record</h2>
+<pre><code class="language-js"><span class="p">{</span>
+  <span class="s2">"dns_template_record"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"dns_template_id"</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"ww2"</span><span class="p">,</span>
+    <span class="s2">"content"</span><span class="o">:</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span>
+    <span class="s2">"ttl"</span><span class="o">:</span> <span class="mi">3600</span><span class="p">,</span>
+    <span class="s2">"prio"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"record_type"</span><span class="o">:</span> <span class="s2">"ALIAS"</span><span class="p">,</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2014-12-15T17:26:11.648Z"</span><span class="p">,</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2014-12-15T17:26:11.648Z"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
 
-<pre><code>DELETE /templates/:template/records/:id
+<p>Responds with HTTP 400 if bad request.</p>
+
+<p>Responds with HTTP 400 if the validation fails.</p>
+
+<h2 id="get">Get a template record</h2>
+
+<pre><code>GET /templates/:template/records/:record
 </code></pre>
 
+<h3 id="parameters-1">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:template</code></td>
+      <td>
+<code>integer</code>,<code>string</code>
+</td>
+      <td>The template id or short-name</td>
+    </tr>
+    <tr>
+      <td><code>:record</code></td>
+      <td><code>integer</code></td>
+      <td>The record id</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-2">Example</h3>
+
+<p>Get the record <code>2</code> for template <code>1</code>.</p>
+
+<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
+      -H 'Accept: application/json' \
+      https://api.dnsimple.com/v1/templates/1/records/2
+</code></pre>
+
+<h3 id="response-2">Response</h3>
+
+<pre><code class="language-js"><span class="p">{</span>
+  <span class="s2">"dns_template_record"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"dns_template_id"</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"ww1"</span><span class="p">,</span>
+    <span class="s2">"content"</span><span class="o">:</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span>
+    <span class="s2">"ttl"</span><span class="o">:</span> <span class="mi">3600</span><span class="p">,</span>
+    <span class="s2">"prio"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"record_type"</span><span class="o">:</span> <span class="s2">"ALIAS"</span><span class="p">,</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2014-12-15T17:26:11.648Z"</span><span class="p">,</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2014-12-15T17:26:11.648Z"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="update">Update a template record</h2>
+
+<pre><code>PUT /templates/:domain/records/:record
+</code></pre>
+
+<h3 id="parameters-2">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:template</code></td>
+      <td>
+<code>integer</code>,<code>string</code>
+</td>
+      <td>The template id or short-name</td>
+    </tr>
+    <tr>
+      <td><code>:record</code></td>
+      <td><code>integer</code></td>
+      <td>The record id</td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="example-3">Example</h3>
+
+<p>Update the record with ID <code>2</code> for template <code>1</code>:</p>
+
+<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
+      -H 'Accept: application/json' \
+      -H 'Content-Type: application/json' \
+      -X PUT \
+      -d '&lt;json&gt;' \
+      https://api.dnsimple.com/v1/templates/1/records/2
+</code></pre>
+
+<h3 id="input-1">Input</h3>
+
+<p>The following fields are updateable. You can pass zero of any of them.</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>record.name</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>record.content</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>record.ttl</code></td>
+      <td><code>integer</code></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code>record.prio</code></td>
+      <td><code>integer</code></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="example-4">Example</h5>
+
+<pre><code class="language-js"><span class="p">{</span>
+  <span class="s2">"record"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"content"</span><span class="o">:</span> <span class="s2">"updated.example.com"</span><span class="p">,</span>
+    <span class="s2">"ttl"</span><span class="o">:</span> <span class="mi">600</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="response-3">Response</h3>
+
+<p>Responds with HTTP 200 on success.</p>
+
+<pre><code class="language-js"><span class="p">{</span>
+  <span class="s2">"dns_template_record"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"dns_template_id"</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"ww1"</span><span class="p">,</span>
+    <span class="s2">"content"</span><span class="o">:</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span>
+    <span class="s2">"ttl"</span><span class="o">:</span> <span class="mi">3600</span><span class="p">,</span>
+    <span class="s2">"prio"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="s2">"record_type"</span><span class="o">:</span> <span class="s2">"ALIAS"</span><span class="p">,</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2014-12-15T17:26:11.648Z"</span><span class="p">,</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2014-12-15T17:26:11.648Z"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<p>Responds with HTTP 400 if bad request.</p>
+
+<p>Responds with HTTP 400 if the validation fails.</p>
+
+<h2 id="delete">Delete a template record</h2>
+
+<pre><code>DELETE /templates/:template/records/:record
+</code></pre>
+
+<h3 id="parameters-3">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:template</code></td>
+      <td>
+<code>integer</code>,<code>string</code>
+</td>
+      <td>The template id or short-name</td>
+    </tr>
+    <tr>
+      <td><code>:record</code></td>
+      <td><code>integer</code></td>
+      <td>The record id</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-5">Example</h3>
+
+<p>Delete the record with ID <code>2</code> for template <code>1</code>:</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
       -H 'Content-Type: application/json' \
       -X DELETE \
-      https://api.dnsimple.com/v1/templates/:template/records/:id
+      https://api.dnsimple.com/v1/templates/1/records/2
 </code></pre>
 
-<h3 id="response-3">Response</h3>
+<h3 id="response-4">Response</h3>
 
-<pre><code class="language-js"><span class="nx">TODO</span></code></pre>
+<p>Responds with HTTP 200 on success.</p>
+
+<div class="marker marker-warning">
+  <p>#### Planned Changes</p>
+
+  <p>The method will return a blank response in the future, you should not depend on the response body.</p>
+</div>
 
       </main>
       <aside id="sidebar" class="col-md-3" role="sidebar">

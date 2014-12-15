@@ -162,6 +162,8 @@
 
 <h3 id="response-1">Response</h3>
 
+<p>Responds with HTTP 201 on success.</p>
+
 <pre><code class="language-js"><span class="p">{</span>
   <span class="s2">"dns_template"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -173,6 +175,10 @@
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2010-09-30T20:01:55Z"</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
+
+<p>Responds with HTTP 400 if bad request.</p>
+
+<p>Responds with HTTP 400 if the validation fails.</p>
 
 <h2 id="get">Get a template</h2>
 
@@ -193,9 +199,9 @@
     <tr>
       <td><code>:template</code></td>
       <td>
-<code>string</code>, <code>integer</code>
+<code>integer</code>,<code>string</code>
 </td>
-      <td>The template short-name or id</td>
+      <td>The template id or short-name</td>
     </tr>
   </tbody>
 </table>
@@ -249,9 +255,9 @@
     <tr>
       <td><code>:template</code></td>
       <td>
-<code>string</code>, <code>integer</code>
+<code>integer</code>,<code>string</code>
 </td>
-      <td>The template short-name or id</td>
+      <td>The template id or short-name</td>
     </tr>
   </tbody>
 </table>
@@ -288,6 +294,8 @@
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
+<p>Responds with HTTP 400 if bad request.</p>
+
 <p>Responds with HTTP 400 if the validation fails.</p>
 
 <h2 id="delete">Delete a template</h2>
@@ -309,9 +317,9 @@
     <tr>
       <td><code>:template</code></td>
       <td>
-<code>string</code>, <code>integer</code>
+<code>integer</code>,<code>string</code>
 </td>
-      <td>The template short-name or id</td>
+      <td>The template id or short-name</td>
     </tr>
   </tbody>
 </table>

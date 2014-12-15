@@ -272,7 +272,7 @@
 
 <h2 id="get">Get a record</h2>
 
-<pre><code>GET /domains/:domain/records/:id
+<pre><code>GET /domains/:domain/records/:record
 </code></pre>
 
 <h3 id="parameters-2">Parameters</h3>
@@ -294,7 +294,7 @@
       <td>The domain name or id</td>
     </tr>
     <tr>
-      <td><code>:id</code></td>
+      <td><code>:record</code></td>
       <td><code>integer</code></td>
       <td>The record id</td>
     </tr>
@@ -303,11 +303,11 @@
 
 <h3 id="example-3">Example</h3>
 
-<p>Get the record <code>123</code> for domain <code>example.com</code>.</p>
+<p>Get the record <code>2</code> for domain <code>example.com</code>.</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
-      https://api.dnsimple.com/v1/domains/example.com/records/123
+      https://api.dnsimple.com/v1/domains/example.com/records/2
 </code></pre>
 
 <h3 id="response-2">Response</h3>
@@ -328,7 +328,7 @@
 
 <h2 id="update">Update a record</h2>
 
-<pre><code>PUT /domains/:domain/records/:id
+<pre><code>PUT /domains/:domain/records/:record
 </code></pre>
 
 <h3 id="parameters-3">Parameters</h3>
@@ -350,7 +350,7 @@
       <td>The domain name or id</td>
     </tr>
     <tr>
-      <td><code>:id</code></td>
+      <td><code>:record</code></td>
       <td><code>integer</code></td>
       <td>The record id</td>
     </tr>
@@ -359,14 +359,14 @@
 
 <h3 id="example-4">Example</h3>
 
-<p>Update the record with ID <code>123</code> for domain <code>example.com</code>:</p>
+<p>Update the record with ID <code>2</code> for domain <code>example.com</code>:</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
       -H 'Content-Type: application/json' \
       -X PUT \
       -d '&lt;json&gt;' \
-      https://api.dnsimple.com/v1/domains/example.com/records/123
+      https://api.dnsimple.com/v1/domains/example.com/records/2
 </code></pre>
 
 <h3 id="input-1">Input</h3>
@@ -386,7 +386,7 @@
       <td><code>record.name</code></td>
       <td><code>string</code></td>
       <td>
-<strong>Required</strong>. Use an empty string to create a record for the root domain.</td>
+<strong>Required</strong>.</td>
     </tr>
     <tr>
       <td><code>record.content</code></td>
@@ -446,7 +446,7 @@
   <p>There are <a href="/planned-changes/#delete-domainsdomainrecordsid" class="alert-link">planned changes</a> for this API method.</p>
 </div>
 
-<pre><code>DELETE /domains/:domain/records/:id
+<pre><code>DELETE /domains/:domain/records/:record
 </code></pre>
 
 <h3 id="parameters-4">Parameters</h3>
@@ -468,7 +468,7 @@
       <td>The domain name or id</td>
     </tr>
     <tr>
-      <td><code>:id</code></td>
+      <td><code>:record</code></td>
       <td><code>integer</code></td>
       <td>The record id</td>
     </tr>
@@ -477,13 +477,13 @@
 
 <h3 id="example-6">Example</h3>
 
-<p>Delete the record with ID <code>123</code> for domain <code>example.com</code>:</p>
+<p>Delete the record with ID <code>2</code> for domain <code>example.com</code>:</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
       -H 'Content-Type: application/json' \
       -X DELETE \
-      https://api.dnsimple.com/v1/domains/example.com/records/123
+      https://api.dnsimple.com/v1/domains/example.com/records/2
 </code></pre>
 
 <h3 id="response-4">Response</h3>
@@ -493,7 +493,7 @@
 <div class="marker marker-warning">
   <p>#### Planned Changes</p>
 
-  <p>The method will return a blank response in the future, you should not depend on the response body. See <a href="/planned-changes/#delete-domainsdomainrecordsid" class="alert-link">planned changes</a>.</p>
+  <p>The method will return a blank response in the future, you should not depend on the response body.</p>
 </div>
 
       </main>
