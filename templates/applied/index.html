@@ -55,28 +55,58 @@
         <h1 id="applied-template-api">Applied Template API</h1>
 
 <ul id="markdown-toc">
-  <li><a href="#apply-a-template">Apply a template</a></li>
+  <li><a href="#apply">Apply a template</a></li>
 </ul>
 
-<h2 id="apply-a-template">Apply a template</h2>
+<h2 id="apply">Apply a template</h2>
 
 <p>Apply the specific template to the domain.</p>
 
-<pre><code>POST /domains/:domain/templates/:id/apply
+<pre><code>POST /domains/:domain/templates/:template/apply
 </code></pre>
 
+<h3 id="parameters">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:domain</code></td>
+      <td>
+<code>string</code>, <code>integer</code>
+</td>
+      <td>The domain name or id</td>
+    </tr>
+    <tr>
+      <td><code>:template</code></td>
+      <td>
+<code>integer</code>,<code>string</code>
+</td>
+      <td>The template id or short-name</td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="example">Example</h3>
+
+<p>Apply template <code>2</code> to domain <code>example.com</code>:</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
       -H 'Content-Type: application/json' \
       -X POST \
-      https://api.dnsimple.com/v1/domains/:domain/templates/:id/apply
+      https://api.dnsimple.com/v1/domains/example.com/templates/2/apply
 </code></pre>
 
 <h3 id="response">Response</h3>
 
-<pre><code class="language-js"><span class="nx">TODO</span></code></pre>
+<p>Responds with HTTP 200 on success.</p>
 
       </main>
       <aside id="sidebar" class="col-md-3" role="sidebar">
