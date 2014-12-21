@@ -57,14 +57,14 @@
 <p>Purchase and manage SSL certificates.</p>
 
 <ul id="markdown-toc">
-  <li><a href="#list-domain-certificates">List domain certificates</a></li>
-  <li><a href="#get-a-domain-certificate">Get a domain certificate</a></li>
+  <li><a href="#list">List domain certificates</a></li>
+  <li><a href="#get">Get a domain certificate</a></li>
   <li><a href="#purchase-a-domain-certificate">Purchase a domain certificate</a></li>
-  <li><a href="#configure-a-domain-certificate">Configure a domain certificate</a></li>
+  <li><a href="#configure">Configure a domain certificate</a></li>
   <li><a href="#submit-a-domain-certificate">Submit a domain certificate</a></li>
 </ul>
 
-<h2 id="list-domain-certificates">List domain certificates</h2>
+<h2 id="list">List domain certificates</h2>
 
 <pre><code>GET /domains/:domain/certificates
 </code></pre>
@@ -224,9 +224,9 @@
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h2 id="get-a-domain-certificate">Get a domain certificate</h2>
+<h2 id="get">Get a domain certificate</h2>
 
-<pre><code>GET /domains/:domain/certificates/:id
+<pre><code>GET /domains/:domain/certificates/:certificate
 </code></pre>
 
 <h3 id="parameters-1">Parameters</h3>
@@ -247,17 +247,17 @@
 </td>
       <td>The domain name or id</td>
     </tr>
+    <tr>
+      <td><code>:certificate</code></td>
+      <td><code>integer</code></td>
+      <td>The certificate id</td>
+    </tr>
   </tbody>
 </table>
 
-<dl>
-  <dt>:id</dt>
-  <dd>The <em>integer</em> certificate id</dd>
-</dl>
-
 <h3 id="example-1">Example</h3>
 
-<p>Get the certificate with ID <code>2</code>.</p>
+<p>Get the certificate with ID <code>2</code> for the domain <code>example.com</code>.</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
@@ -357,29 +357,26 @@
 
 <h3 id="example-2">Example</h3>
 
+<p>Purchase a certificate for the domain <code>example.com</code>.</p>
+
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
       -X POST \
       -H 'Content-Type: application/json' \
       -d '&lt;json&gt;' \
-      https://api.dnsimple.com/v1/domains/:domain/certificates
+      https://api.dnsimple.com/v1/domains/example.com/certificates
 </code></pre>
 
 <h3 id="input">Input</h3>
 
-<dl>
-  <dt>certificate.name</dt>
-  <dd>Required <em>string</em> subdomain for the certificate.
-Leave it blank to purchase a certificate for the root domain.
-Enter <code>*</code> to purchase a wildcard certificate for the domain.
-Enter the subdomain name to purchase a certificate for a subdomain, for example use <code>www</code> to purchase the certificate for <code>www.mydomain.com</code>.</dd>
-  <dt>certificate.contact_id</dt>
-  <dd>Required <em>integer</em> corresponding to the ID of the contact responsible for the certificate.
-In case of wildcard domains, the contact information must match what is in the Certificate Signing Request.
-If you plan on submitting your own Certificate Signing Request then you must ensure these details match.</dd>
-  <dt>certificate.csr</dt>
-  <dd>Optional <em>string</em> with a custom Certificate Signing Request.</dd>
-</dl>
+<p>Name | Type | Description
+—–|——|————
+<code>certificate.name</code> | <code>string</code> | <strong>Required</strong>. The subdomain for the certificate. 
+                                Enter <code>*</code> to purchase a wildcard certificate for the domain.
+                                Enter the subdomain name to purchase a certificate for a subdomain, for example use <code>www</code> to purchase the certificate for <code>www.mydomain.com</code>.
+                                Leave it blank to purchase a certificate for the root domain.
+<code>certificate.contact_id</code> | <code>string</code> | <strong>Required</strong>.
+<code>certificate.csr</code> | <code>string</code> | A with a custom Certificate Signing Request.</p>
 
 <pre><code class="language-js"><span class="p">{</span>
   <span class="s2">"certificate"</span><span class="o">:</span> <span class="p">{</span>
@@ -389,6 +386,8 @@ If you plan on submitting your own Certificate Signing Request then you must ens
 <span class="p">}</span></code></pre>
 
 <h3 id="response-2">Response</h3>
+
+<p>Responds with HTTP 201 on success.</p>
 
 <pre><code class="language-js"><span class="p">{</span>
   <span class="s2">"certificate"</span><span class="o">:</span> <span class="p">{</span>
@@ -451,11 +450,15 @@ If you plan on submitting your own Certificate Signing Request then you must ens
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="configure-a-domain-certificate">Configure a domain certificate</h2>
+<p>Responds with HTTP 400 if bad request.</p>
 
-<p>Configured a purchased certificate.</p>
+<p>Responds with HTTP 400 if the validation fails.</p>
 
-<pre><code>PUT /domains/:domain/certificates/:id/configure
+<h2 id="configure">Configure a domain certificate</h2>
+
+<p>Configure a purchased certificate.</p>
+
+<pre><code>PUT /domains/:domain/certificates/:certificate/configure
 </code></pre>
 
 <h3 id="parameters-3">Parameters</h3>
@@ -476,17 +479,17 @@ If you plan on submitting your own Certificate Signing Request then you must ens
 </td>
       <td>The domain name or id</td>
     </tr>
+    <tr>
+      <td><code>:certificate</code></td>
+      <td><code>integer</code></td>
+      <td>The certificate id</td>
+    </tr>
   </tbody>
 </table>
 
-<dl>
-  <dt>:id</dt>
-  <dd>The <em>integer</em> certificate id</dd>
-</dl>
-
 <h3 id="example-3">Example</h3>
 
-<p>Configure the certificate with ID <code>2</code>.</p>
+<p>Configure the certificate with ID <code>2</code> for the domain <code>example.com</code>.</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
@@ -550,7 +553,7 @@ If you plan on submitting your own Certificate Signing Request then you must ens
 <span class="s2">    ClvuFGYh3Rb35NMC9XIvJbAfWBv1XB+TX+o41YcS8H3AocQtuxmxNqYzZOvUpAkM</span>
 <span class="s2">    oWo54arDcDjcPm2TYZ0umKl/CacGYTwfUpA42BEpoxx+RcF7/XU=</span>
 <span class="s2">    -----END RSA PRIVATE KEY-----"</span><span class="p">,</span>
-    <span class="s2">"approver_email"</span><span class="o">:</span> <span class="nx">nil</span><span class="p">,</span>
+    <span class="s2">"approver_email"</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
     <span class="s2">"approver_emails"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"admin@example.com"</span><span class="p">,</span> <span class="s2">"admin@www.example.com"</span><span class="p">],</span>
     <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2011-05-14T15:14:43Z"</span><span class="p">,</span>
     <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2011-05-14T15:14:43Z"</span><span class="p">,</span>
@@ -563,7 +566,7 @@ If you plan on submitting your own Certificate Signing Request then you must ens
 
 <p>Submit a configured certificate for signing by the certificate authority.</p>
 
-<pre><code>PUT /domains/:domain/certificates/:id/submit
+<pre><code>PUT /domains/:domain/certificates/:certificate/submit
 </code></pre>
 
 <h3 id="parameters-4">Parameters</h3>
@@ -584,17 +587,17 @@ If you plan on submitting your own Certificate Signing Request then you must ens
 </td>
       <td>The domain name or id</td>
     </tr>
+    <tr>
+      <td><code>:certificate</code></td>
+      <td><code>integer</code></td>
+      <td>The certificate id</td>
+    </tr>
   </tbody>
 </table>
 
-<dl>
-  <dt>:id</dt>
-  <dd>The <em>integer</em> certificate id</dd>
-</dl>
-
 <h3 id="example-4">Example</h3>
 
-<p>Submit the certificate with ID <code>2</code>.</p>
+<p>Submit the certificate with ID <code>2</code> for the domain <code>example.com</code>.</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
@@ -606,11 +609,23 @@ If you plan on submitting your own Certificate Signing Request then you must ens
 
 <h3 id="input-1">Input</h3>
 
-<dl>
-  <dt>certificate.approver_email</dt>
-  <dd>Required <em>string</em>
-</dd>
-</dl>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>certificate.approver_email</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+  </tbody>
+</table>
 
 <pre><code class="language-js"><span class="p">{</span>
   <span class="s2">"certificate"</span><span class="o">:</span> <span class="p">{</span>
@@ -698,32 +713,33 @@ If you plan on submitting your own Certificate Signing Request then you must ens
 <ul class="nav-list">
   <li><a href="/domains/">Domains</a></li>
   <li><ul class="nav-list">
-  <li><a href="/domains/registry/">Registry</a></li>
   <li><a href="/domains/autorenewal/">Autorenewal</a></li>
   <li><a href="/domains/sharing/">Sharing</a></li>
   <li><a href="/domains/records/">Records</a></li>
   <li><a href="/domains/nameservers/">Name Servers</a></li>
   <li><a href="/domains/vanity-nameservers/">Vanity Name Servers</a></li>
   <li><a href="/domains/privacy/">WHOIS Privacy</a></li>
-  <li><a href="/domains/certificates/">SSL Certificates</a></li>
   <li><a href="/domains/forwards/">Email Forwards</a></li>
   <li><a href="/domains/zones/">Zones</a></li>
   </ul></li>
+  <li><a href="/registrar/">Registration</a></li>
+  <li><ul class="nav-list">
+  <li><a href="/registrar/extended-attributes/">Extended Attributes</a></li>
+  <li><a href="/registrar/prices/">Prices</a></li>
+  </ul></li>
+  <li><a href="/certificates/">SSL Certificates</a></li>
   <li><a href="/contacts/">Contacts</a></li>
   <li><a href="/services/">Services</a></li>
   <li><ul class="nav-list">
-  <li><a href="/services/applied/">Domain Services</a></li>
+  <li><a href="/services/domain/">Domain Services</a></li>
   </ul></li>
   <li><a href="/templates/">Templates</a></li>
   <li><ul class="nav-list">
   <li><a href="/templates/records/">Records</a></li>
-  <li><a href="/templates/applied/">Domain Templates</a></li>
+  <li><a href="/templates/domain/">Domain Templates</a></li>
   </ul></li>
-  <li><a href="/extended-attributes/">Extended Attributes</a></li>
   <li><a href="/users/">Users</a></li>
   <li><a href="/subscriptions/">Subscriptions</a></li>
-  <li><a href="/statements/">Statements</a></li>
-  <li><a href="/prices/">Prices</a></li>
 </ul>
 
 <div class="sidebar-infobox well">
