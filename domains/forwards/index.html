@@ -59,6 +59,7 @@
 <ul id="markdown-toc">
   <li><a href="#list">List forwards</a></li>
   <li><a href="#create">Create a forward</a></li>
+  <li><a href="#get">Get a record</a></li>
   <li><a href="#delete">Delete a forward</a></li>
 </ul>
 
@@ -217,9 +218,9 @@
 
 <p>Responds with HTTP 400 if the validation fails.</p>
 
-<h2 id="delete">Delete a forward</h2>
+<h2 id="get">Get a record</h2>
 
-<pre><code>DELETE /domains/:domain/email_forwards/:id
+<pre><code>GET /domains/:domain/email_forwards/:forward
 </code></pre>
 
 <h3 id="parameters-2">Parameters</h3>
@@ -240,21 +241,79 @@
 </td>
       <td>The domain name or id</td>
     </tr>
+    <tr>
+      <td><code>:forward</code></td>
+      <td><code>integer</code></td>
+      <td>The email forward id</td>
+    </tr>
   </tbody>
 </table>
 
 <h3 id="example-2">Example</h3>
 
-<p>Delete the email forward with ID <code>123</code> for domain <code>example.com</code>:</p>
+<p>Get the record <code>2</code> for domain <code>example.com</code>.</p>
+
+<pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
+      -H 'Accept: application/json' \
+      https://api.dnsimple.com/v1/domains/example.com/email_forwards/2
+</code></pre>
+
+<h3 id="response-2">Response</h3>
+
+<pre><code class="language-js"><span class="p">{</span>
+  <span class="s2">"email_forward"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">"domain_id"</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
+    <span class="s2">"from"</span><span class="o">:</span> <span class="s2">"john@example.com"</span><span class="p">,</span>
+    <span class="s2">"to"</span><span class="o">:</span> <span class="s2">"someone@somedomain.com"</span><span class="p">,</span>
+    <span class="s2">"created_at"</span><span class="o">:</span> <span class="s2">"2012-10-09T14:54:17Z"</span><span class="p">,</span>
+    <span class="s2">"updated_at"</span><span class="o">:</span> <span class="s2">"2012-10-09T14:54:17Z"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="delete">Delete a forward</h2>
+
+<pre><code>DELETE /domains/:domain/email_forwards/:forward
+</code></pre>
+
+<h3 id="parameters-3">Parameters</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>:domain</code></td>
+      <td>
+<code>string</code>, <code>integer</code>
+</td>
+      <td>The domain name or id</td>
+    </tr>
+    <tr>
+      <td><code>:forward</code></td>
+      <td><code>integer</code></td>
+      <td>The email forward id</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-3">Example</h3>
+
+<p>Delete the email forward with ID <code>2</code> for domain <code>example.com</code>:</p>
 
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
       -H 'Content-Type: application/json' \
       -X DELETE \
-      https://api.dnsimple.com/v1/domains/example.com/email_forwards/123
+      https://api.dnsimple.com/v1/domains/example.com/email_forwards/2
 </code></pre>
 
-<h3 id="response-2">Response</h3>
+<h3 id="response-3">Response</h3>
 
 <p>Responds with HTTP 204 on success.</p>
 
@@ -293,12 +352,12 @@
   <li><a href="/contacts/">Contacts</a></li>
   <li><a href="/services/">Services</a></li>
   <li><ul class="nav-list">
-  <li><a href="/services/domain/">Domain Services</a></li>
+  <li><a href="/services/domains/">Domain Services</a></li>
   </ul></li>
   <li><a href="/templates/">Templates</a></li>
   <li><ul class="nav-list">
   <li><a href="/templates/records/">Records</a></li>
-  <li><a href="/templates/domain/">Domain Templates</a></li>
+  <li><a href="/templates/domains/">Domain Templates</a></li>
   </ul></li>
   <li><a href="/users/">Users</a></li>
   <li><a href="/subscriptions/">Subscriptions</a></li>
