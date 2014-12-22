@@ -55,14 +55,12 @@
         <h1 id="extended-attribute-api">Extended Attribute API</h1>
 
 <ul id="markdown-toc">
-  <li><a href="#list-extended-attributes-for-a-tld-list">List extended attributes for a TLD #{list}</a></li>
+  <li><a href="#list">List extended attributes for a TLD</a></li>
 </ul>
 
-<p>Some TLDs require extended attributes when registering or transferring a domain.</p>
+<p>Some TLDs require extended attributes when registering or transferring a domain. This API interface provides information on the extended attributes for any particular TLD.</p>
 
-<p>This API interface provides information on the extended attributes for any particular TLD.</p>
-
-<h2 id="list-extended-attributes-for-a-tld-list">List extended attributes for a TLD #{list}</h2>
+<h2 id="list">List extended attributes for a TLD</h2>
 
 <pre><code>GET /extended_attributes/:tld
 </code></pre>
@@ -242,12 +240,10 @@
 <ul class="nav-list">
   <li><a href="/domains/">Domains</a></li>
   <li><ul class="nav-list">
-  <li><a href="/domains/autorenewal/">Autorenewal</a></li>
-  <li><a href="/domains/sharing/">Sharing</a></li>
   <li><a href="/domains/records/">Records</a></li>
-  <li><a href="/domains/nameservers/">Name Servers</a></li>
-  <li><a href="/domains/vanity-nameservers/">Vanity Name Servers</a></li>
+  <li><a href="/domains/autorenewal/">Autorenewal</a></li>
   <li><a href="/domains/privacy/">WHOIS Privacy</a></li>
+  <li><a href="/domains/sharing/">Sharing</a></li>
   <li><a href="/domains/forwards/">Email Forwards</a></li>
   <li><a href="/domains/zones/">Zones</a></li>
   </ul></li>
@@ -255,6 +251,10 @@
   <li><ul class="nav-list">
   <li><a href="/registrar/extended-attributes/">Extended Attributes</a></li>
   <li><a href="/registrar/prices/">Prices</a></li>
+  </ul></li>
+  <li><a href="/nameservers/">Name Servers</a></li>
+  <li><ul class="nav-list">
+  <li><a href="/nameservers/vanity-nameservers/">Vanity Name Servers</a></li>
   </ul></li>
   <li><a href="/certificates/">SSL Certificates</a></li>
   <li><a href="/contacts/">Contacts</a></li>
