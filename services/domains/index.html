@@ -55,13 +55,13 @@
         <h1 id="applied-service-api">Applied Service API</h1>
 
 <ul id="markdown-toc">
-  <li><a href="#list-applied-services">List applied services</a></li>
-  <li><a href="#list-available-services">List available services</a></li>
-  <li><a href="#apply-a-service">Apply a service</a></li>
-  <li><a href="#unapply-a-service">Unapply a service</a></li>
+  <li><a href="#applied">List applied services</a></li>
+  <li><a href="#available">List available services</a></li>
+  <li><a href="#apply">Apply a service</a></li>
+  <li><a href="#unapply">Unapply a service</a></li>
 </ul>
 
-<h2 id="list-applied-services">List applied services</h2>
+<h2 id="applied">List applied services</h2>
 
 <pre><code>GET /domains/:domain/applied_services
 </code></pre>
@@ -121,7 +121,7 @@
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h2 id="list-available-services">List available services</h2>
+<h2 id="available">List available services</h2>
 
 <pre><code>GET /domains/:domain/available_services
 </code></pre>
@@ -211,7 +211,7 @@
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h2 id="apply-a-service">Apply a service</h2>
+<h2 id="apply">Apply a service</h2>
 
 <pre><code>POST /domains/:domain/applied_services
 </code></pre>
@@ -301,7 +301,7 @@
   <span class="p">}</span>
 <span class="p">]</span></code></pre>
 
-<h2 id="unapply-a-service">Unapply a service</h2>
+<h2 id="unapply">Unapply a service</h2>
 
 <pre><code>DELETE /domains/:domain/applied_services/:id
 </code></pre>

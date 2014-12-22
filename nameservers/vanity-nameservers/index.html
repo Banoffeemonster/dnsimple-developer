@@ -55,15 +55,15 @@
         <h1 id="vanity-name-server-api">Vanity Name Server API</h1>
 
 <ul id="markdown-toc">
-  <li><a href="#enable-domain-vanity-name-servers">Enable domain vanity name servers</a></li>
-  <li><a href="#disable-domain-vanity-name-servers">Disable domain vanity name servers</a></li>
+  <li><a href="#enable">Enable domain vanity name servers</a></li>
+  <li><a href="#disable">Disable domain vanity name servers</a></li>
 </ul>
 
 <p>Vanity name servers are used to hide the use of DNSimple’s name servers and instead use our name servers with different names.</p>
 
 <p>Note: you must request activation of the vanity name servers feature on your account before you can manage vanity name servers through the API. Contact support@dnsimple.com for more details.</p>
 
-<h2 id="enable-domain-vanity-name-servers">Enable domain vanity name servers</h2>
+<h2 id="enable">Enable domain vanity name servers</h2>
 
 <pre><code>POST /domains/:domain/vanity_name_servers
 </code></pre>
@@ -91,27 +91,25 @@
 
 <h3 id="example">Example</h3>
 
+<p>Enable vanity name servers for domain <code>example.com</code>.</p>
+
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
       -H 'Content-Type: application/json' \
       -X POST \
       -d '&lt;json&gt;' \
-      https://api.dnsimple.com/v1/domains/:domain/vanity_name_servers
+      https://api.dnsimple.com/v1/domains/example.com/vanity_name_servers
 </code></pre>
 
 <h3 id="input">Input</h3>
 
-<p>Required fields:</p>
+<p>Name | Type | Description
+—–|——|————
+<code>vanity_nameserver_configuration.server_source</code> | <code>string</code> | <strong>Required</strong>. Either <code>dnsimple</code> or <code>external</code>.
+                                                             If you pass <code>external</code> as the server source then you must include name servers to use.
+                                                             You may use up to 4 external name servers (<code>ns1</code> through <code>ns4</code>).</p>
 
-<ul>
-  <li><code>vanity_nameserver_configuration[server_source]</code></li>
-</ul>
-
-<p><code>server_source</code> must be either <code>dnsimple</code> or <code>external</code>.
-If you pass <code>external</code> as the server source then you must include name servers to use.
-You may use up to 4 external name servers (<code>ns1</code> through <code>ns4</code>).</p>
-
-<p>Example with <code>dnsimple</code> source.</p>
+<h5 id="example-with-dnsimple-source">Example with <code>dnsimple</code> source</h5>
 
 <pre><code class="language-js"><span class="p">{</span>
   <span class="s2">"vanity_nameserver_configuration"</span><span class="o">:</span> <span class="p">{</span>
@@ -119,7 +117,7 @@ You may use up to 4 external name servers (<code>ns1</code> through <code>ns4</c
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<p>Example with <code>external</code> source.</p>
+<h5 id="example-with-external-source">Example with <code>external</code> source</h5>
 
 <pre><code class="language-js"><span class="p">{</span>
   <span class="s2">"vanity_nameserver_configuration"</span><span class="o">:</span> <span class="p">{</span>
@@ -131,9 +129,11 @@ You may use up to 4 external name servers (<code>ns1</code> through <code>ns4</c
 
 <h3 id="response">Response</h3>
 
-<pre><code class="language-js"><span class="nx">TODO</span></code></pre>
+<pre><code class="language-js"><span class="p">{</span>
+  <span class="s2">"status"</span><span class="o">:</span> <span class="s2">"enabled"</span>
+<span class="p">}</span></code></pre>
 
-<h2 id="disable-domain-vanity-name-servers">Disable domain vanity name servers</h2>
+<h2 id="disable">Disable domain vanity name servers</h2>
 
 <pre><code>DELETE /domains/:domain/vanity_name_servers
 </code></pre>
@@ -161,11 +161,13 @@ You may use up to 4 external name servers (<code>ns1</code> through <code>ns4</c
 
 <h3 id="example-1">Example</h3>
 
+<p>Disable vanity name servers for domain <code>example.com</code>.</p>
+
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
       -H 'Content-Type: application/json' \
       -X DELETE \
-      https://api.dnsimple.com/v1/domains/:domain/vanity_name_servers
+      https://api.dnsimple.com/v1/domains/example.com/vanity_name_servers
 </code></pre>
 
 <h3 id="response-1">Response</h3>
