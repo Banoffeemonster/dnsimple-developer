@@ -105,11 +105,23 @@
 
 <h3 id="input">Input</h3>
 
-<p>Name | Type | Description
-—–|——|————
-<code>vanity_nameserver_configuration.server_source</code> | <code>string</code> | <strong>Required</strong>. Either <code>dnsimple</code> or <code>external</code>.
-                                                             If you pass <code>external</code> as the server source then you must include name servers to use.
-                                                             You may use up to 4 external name servers (<code>ns1</code> through <code>ns4</code>).</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>vanity_nameserver_configuration.server_source</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>. Either <code>dnsimple</code> or <code>external</code>. If you pass <code>external</code> as the server source then you must include name servers to use. You may use up to 4 external name servers (<code>ns1</code> through <code>ns4</code>).</td>
+    </tr>
+  </tbody>
+</table>
 
 <h5 id="example-with-dnsimple-source">Example with <code>dnsimple</code> source</h5>
 
