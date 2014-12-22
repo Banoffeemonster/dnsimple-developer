@@ -57,8 +57,8 @@
 <ul id="markdown-toc">
   <li><a href="#list">List domain name servers</a></li>
   <li><a href="#change">Change domain name servers</a></li>
-  <li><a href="#register-a-domain-name-server-at-the-registry">Register a domain name server at the registry</a></li>
-  <li><a href="#de-register-a-domain-name-server-at-the-registry">De-register a domain name server at the registry</a></li>
+  <li><a href="#register">Register a name server at the registry</a></li>
+  <li><a href="#deregister">De-register a name server at the registry</a></li>
 </ul>
 
 <h2 id="list">List domain name servers</h2>
@@ -187,7 +187,7 @@
 
 <p>Responds with HTTP 400 if bad request.</p>
 
-<h2 id="register-a-domain-name-server-at-the-registry">Register a domain name server at the registry</h2>
+<h2 id="register">Register a name server at the registry</h2>
 
 <pre><code>POST /domains/:domain/registry_name_servers
 </code></pre>
@@ -229,6 +229,30 @@
 
 <h3 id="input-1">Input</h3>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>name_server.name</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+    <tr>
+      <td><code>name_server.ip</code></td>
+      <td><code>string</code></td>
+      <td>
+<strong>Required</strong>.</td>
+    </tr>
+  </tbody>
+</table>
+
 <pre><code class="language-js"><span class="p">{</span>
   <span class="s2">"name_server"</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">"name"</span><span class="o">:</span> <span class="s2">"ns1.example.com"</span><span class="p">,</span>
@@ -247,12 +271,12 @@
 
 <p>Responds with HTTP 400 if bad request.</p>
 
-<h2 id="de-register-a-domain-name-server-at-the-registry">De-register a domain name server at the registry</h2>
-
-<p>De-register the name server <code>ns1.example.com</code> belonging to <code>example.com</code>:</p>
+<h2 id="deregister">De-register a name server at the registry</h2>
 
 <pre><code>DELETE /domains/:domain/registry_name_servers/:name
 </code></pre>
+
+<p>De-register the name server <code>ns1.example.com</code> belonging to <code>example.com</code>:</p>
 
 <h3 id="parameters-3">Parameters</h3>
 

@@ -54,14 +54,14 @@
       <main id="main" class="col-md-9" role="main">
         <h1 id="email-forwarding-api">Email Forwarding API</h1>
 
-<p>Set up email forwarding from your domain to another email account.</p>
-
 <ul id="markdown-toc">
   <li><a href="#list">List forwards</a></li>
   <li><a href="#create">Create a forward</a></li>
-  <li><a href="#get">Get a record</a></li>
+  <li><a href="#get">Get a forward</a></li>
   <li><a href="#delete">Delete a forward</a></li>
 </ul>
+
+<p>Set up email forwarding from your domain to another email account.</p>
 
 <h2 id="list">List forwards</h2>
 
@@ -218,7 +218,7 @@
 
 <p>Responds with HTTP 400 if the validation fails.</p>
 
-<h2 id="get">Get a record</h2>
+<h2 id="get">Get a forward</h2>
 
 <pre><code>GET /domains/:domain/email_forwards/:forward
 </code></pre>

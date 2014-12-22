@@ -55,12 +55,10 @@
         <h1 id="prices-api">Prices API</h1>
 
 <ul id="markdown-toc">
-  <li><a href="#list-prices">List prices</a></li>
+  <li><a href="#list">List prices</a></li>
 </ul>
 
-<h2 id="list-prices">List prices</h2>
-
-<p>List all prices.</p>
+<h2 id="list">List prices</h2>
 
 <pre><code>GET /prices
 </code></pre>
@@ -76,38 +74,26 @@
 <pre><code class="language-js"><span class="p">[</span>
   <span class="p">{</span>
     <span class="s2">"price"</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">"tld"</span><span class="o">:</span> <span class="s2">"com"</span><span class="p">,</span>
       <span class="s2">"minimum_registration"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">"registration_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s2">"registration_price"</span><span class="o">:</span> <span class="s2">"14.00"</span><span class="p">,</span>
-        <span class="s2">"renewal_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s2">"renewal_price"</span><span class="o">:</span> <span class="s2">"14.00"</span><span class="p">,</span>
-        <span class="s2">"tld"</span><span class="o">:</span> <span class="s2">"com"</span><span class="p">,</span>
-        <span class="s2">"transfer_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s2">"transfer_price"</span><span class="o">:</span> <span class="s2">"14.00"</span>
+      <span class="s2">"registration_price"</span><span class="o">:</span> <span class="s2">"14.00"</span><span class="p">,</span>
+      <span class="s2">"registration_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"transfer_price"</span><span class="o">:</span> <span class="s2">"14.00"</span><span class="p">,</span>
+      <span class="s2">"transfer_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"renewal_price"</span><span class="o">:</span> <span class="s2">"14.00"</span><span class="p">,</span>
+      <span class="s2">"renewal_enabled"</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">}</span>
   <span class="p">},</span>
   <span class="p">{</span>
     <span class="s2">"price"</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">"minimum_registration"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s2">"registration_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"registration_price"</span><span class="o">:</span> <span class="s2">"14.00"</span><span class="p">,</span>
-      <span class="s2">"renewal_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"renewal_price"</span><span class="o">:</span> <span class="s2">"14.00"</span><span class="p">,</span>
       <span class="s2">"tld"</span><span class="o">:</span> <span class="s2">"net"</span><span class="p">,</span>
-      <span class="s2">"transfer_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"transfer_price"</span><span class="o">:</span> <span class="s2">"14.00"</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="s2">"price"</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">"minimum_registration"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s2">"registration_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
       <span class="s2">"registration_price"</span><span class="o">:</span> <span class="s2">"14.00"</span><span class="p">,</span>
-      <span class="s2">"renewal_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"renewal_price"</span><span class="o">:</span> <span class="s2">"14.00"</span><span class="p">,</span>
-      <span class="s2">"tld"</span><span class="o">:</span> <span class="s2">"org"</span><span class="p">,</span>
+      <span class="s2">"registration_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">"transfer_price"</span><span class="o">:</span> <span class="s2">"14.00"</span><span class="p">,</span>
       <span class="s2">"transfer_enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="s2">"transfer_price"</span><span class="o">:</span> <span class="s2">"14.00"</span>
+      <span class="s2">"renewal_price"</span><span class="o">:</span> <span class="s2">"14.00"</span><span class="p">,</span>
+      <span class="s2">"renewal_enabled"</span><span class="o">:</span> <span class="kc">true</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">]</span></code></pre>

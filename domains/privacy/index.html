@@ -57,11 +57,11 @@
 <p>WHOIS Privacy Protection replaces a domain’s WHOIS data with a proxy service to protect a customer’s address, phone number and email address. The service is a paid service and must be renewed on a yearly basis.</p>
 
 <ul id="markdown-toc">
-  <li><a href="#enable-domain-whois-privacy">Enable domain WHOIS Privacy</a></li>
-  <li><a href="#disable-domain-whois-privacy">Disable domain WHOIS Privacy</a></li>
+  <li><a href="#enable">Enable domain WHOIS Privacy</a></li>
+  <li><a href="#disable">Disable domain WHOIS Privacy</a></li>
 </ul>
 
-<h2 id="enable-domain-whois-privacy">Enable domain WHOIS Privacy</h2>
+<h2 id="enable">Enable domain WHOIS Privacy</h2>
 
 <pre><code>POST /domains/:domain/whois_privacy
 </code></pre>
@@ -92,26 +92,29 @@ If the privacy protection is currently disabled then it will be enabled.</p>
 
 <h3 id="example">Example</h3>
 
+<p>Enable WHOIS privacy for the domain <code>example.com</code>:</p>
+
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
       -H 'Content-Type: application/json' \
       -X POST \
-      https://api.dnsimple.com/v1/domains/:domain/whois_privacy
+      https://api.dnsimple.com/v1/domains/example.com/whois_privacy
 </code></pre>
 
 <h3 id="response">Response</h3>
 
+<p>Responds with HTTP 201 on success.</p>
+
 <pre><code class="language-js"><span class="p">{</span>
   <span class="s2">"whois_privacy"</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-    <span class="s2">"domain_id"</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
-    <span class="s2">"auto_renew"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">"expires_on"</span><span class="o">:</span> <span class="s2">"2012-07-23"</span><span class="p">,</span>
-    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"domain_id"</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"expires_on"</span><span class="o">:</span> <span class="s2">"2015-12-22"</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<h2 id="disable-domain-whois-privacy">Disable domain WHOIS Privacy</h2>
+<h2 id="disable">Disable domain WHOIS Privacy</h2>
 
 <pre><code>DELETE /domains/:domain/whois_privacy
 </code></pre>
@@ -141,20 +144,27 @@ If the privacy protection is currently disabled then it will be enabled.</p>
 
 <h3 id="example-1">Example</h3>
 
+<p>Disable WHOIS privacy for the domain <code>example.com</code>:</p>
+
 <pre><code>curl  -H 'X-DNSimple-Token: &lt;email&gt;:&lt;token&gt;' \
       -H 'Accept: application/json' \
       -H 'Content-Type: application/json' \
       -X DELETE \
-      https://api.dnsimple.com/v1/domains/:domain/whois_privacy
+      https://api.dnsimple.com/v1/domains/example.com/whois_privacy
 </code></pre>
 
 <h3 id="response-1">Response</h3>
 
 <p>Responds with HTTP 200 on success.</p>
 
-<div class="alert alert-warning">
-  <strong>Warning!</strong> The method will return a blank response in the future, you should not depend on the response body. See <a href="/planned-changes/" class="alert-link">planned changes</a>.
-</div>
+<pre><code class="language-js"><span class="p">{</span>
+  <span class="s2">"whois_privacy"</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">"id"</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"domain_id"</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="s2">"enabled"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"expires_on"</span><span class="o">:</span> <span class="s2">"2015-12-22"</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
 
       </main>
       <aside id="sidebar" class="col-md-3" role="sidebar">
